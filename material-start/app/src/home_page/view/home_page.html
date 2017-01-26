@@ -10,9 +10,18 @@
         <!-- <md-button ng-click="close()" class="md-primary">
           Close Sidenav Left
         </md-button> -->
+        <div class="md-media-xl card-media" flex="40" flex-offset="25">
+          <img ng-src="http://findicons.com/files/icons/1671/simplicio/128/mail_write.png" class="md-card-image">
+        </div>
         <p>
-          This sidenav is locked open on your device. To go back to the default behavior,
-          narrow your display.
+          To-Do:<br>
+1. Validation requirements:<br>
+• email and/or sms must be provided<br>
+• sms (if provided) must be 10 or 11 digits long<br>
+2. Add autocomplete to any of the recipient’s input fields. Use API
+request: /programming_challenge/autocomplete<br>
+3. Send the message to the recipient using API request: /programming_challenge/message<br>
+4. Show success message if the POST request from step #5 is successful.
         </p>
       </md-content>
     </md-sidenav>
@@ -26,45 +35,39 @@
         </md-card-title>
         <md-card-content layout="row" layout-align="space-between">
           <div>
-            <form name="userForm">
-
-              <md-input-container class="md-block">
-                <label>Name</label>
-                <input ng-model="user.name">
-              </md-input-container>
+            <form name="userForm" novalidate>
 
               <div layout="row">
                 <md-input-container class="md-block">
-                  <label>Email</label>
-                  <input ng-model="user.email">
+                  <label>Name</label>
+                  <input type="text" name="name" ng-model="user.name" required>
+                  <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Name is required.</p>
                 </md-input-container>
 
-                <md-input-container class="md-block">
+                <md-input-container class="md-block" flex-offset="5">
+                  <label>Email</label>
+                  <input type="email" name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
+                  <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-offset="5">
                   <label>SMS</label>
-                  <input ng-model="user.sms">
+                  <input name="sms" ng-pattern="/^[0-9]{10||11}$/" ng-model="user.sms">
+                  <p ng-show="userForm.sms.$invalid && !userForm.sms.$pristine" class="help-block">Enter a valid number.</p>
                 </md-input-container>
               </div>
 
               <md-input-container class="md-block">
                 <label>Message</label>
-                <textarea ng-model="user.message" md-maxlength="140" rows="9" md-select-on-focus></textarea>
+                <textarea ng-model="user.message" md-maxlength="140" rows="9" md-select-on-focus required></textarea>
+              </md-input-container>
+
+              <md-input-container class="md-block">
+                <md-button class="md-raised md-primary" ng-disabled="userForm.$invalid">Send</md-button>
               </md-input-container>
 
             </form>
           </div>
-          <!-- <div class="md-media-xl card-media"></div>
-
-          <md-card-actions layout="column">
-            <md-button class="md-icon-button" aria-label="Favorite">
-              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Settings">
-              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Share">
-              <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-            </md-button>
-          </md-card-actions> -->
 
         </md-card-content>
       </md-card>
