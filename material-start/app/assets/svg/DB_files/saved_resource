@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>DB</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <!--<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>-->
+    <link rel="stylesheet" href="assets/font.css">
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="assets/app.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/material.css">
+
+    <script src="bower_components/cropper/cropper.js"></script>
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/bootstrap.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
+    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+  </head>
+
+  <body ng-app="myApp" layout="column" ng-controller="UserController as user" ng-cloak>
+  <navbar></navbar>
+    <div flex layout="row">
+      <left-sidebar></left-sidebar>
+
+      <md-content style="position:relative;" flex="100" id="main-content">
+        <div ng-view> </div>
+
+      </md-content>
+
+    </div>
+
+  <!-- First Time User Log In Modal -->
+  <div ng-controller="submitController" class="modal fade" id="loginModal" role="dialog">
+      <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title text-center">Hi {{profile.name}}, Welcome to #YoNoMeCuelgo</h4>
+              </div>
+              <div class="modal-body" layout="column">
+                  <div layout="row">
+                      <md-input-container flex="40" class="md-icon-float md-block">
+                          <label>Name</label>
+                          <md-icon class="fa fa-user"></md-icon>
+                          <input ng-model="profile.name" type="text">
+                      </md-input-container>
+
+                      <md-input-container flex-offset="10" flex="50" class="md-icon-float md-block">
+                          <label>Last Name</label>
+                          <input ng-model="profile.lastName" type="text">
+                      </md-input-container>
+                  </div>
+
+                  <md-input-container class="md-icon-float md-block" style="margin-top: -2%;">
+                      <label>Email</label>
+                      <md-icon class="fa fa-envelope"></md-icon>
+                      <input ng-model="profle.email" type="text">
+                  </md-input-container>
+
+                  <h4 style="padding-left:5%;">Are you a tutor?</h4>
+                  <div flex-gt-sm="50" style="margin-left: 1%">
+                      <md-switch class="md-primary" ng-model="tutor" aria-label="Switch 1" ng-true-value="'Yes'" ng-false-value="'No'" style="margin-left: 4%; width: 80px;">
+                          {{tutor}}
+                      </md-switch>
+                  </div>
+
+                  <h4 style="padding-left:5%;">Profile Image</h4>
+
+                  <script>
+                      function readURL(input) {
+                        if (input.files && input.files[0]) {
+                          var reader = new FileReader();
+
+                          reader.onload = function (e) {
+                            $('#profile_pic')
+                                .attr('src', e.target.result)
+                                .width(100)
+                                .height(100);
+
+                          };
+
+                          reader.readAsDataURL(input.files[0]);
+                        }
+                      }
+                  </script>
+
+                  <div class="col-md-4 col-push-4" style="margin-top: 10px; padding-left:10%;">
+                      <img id="profile_pic" src="#" alt="your image" align="middle"/>
+                  </div>
+
+                  <form class="row" id="form2" runat="server">
+                      <input style="visibility:hidden;" type="file" name="file" id="profileImage" onchange="readURL(this);"/>
+                      <div style="color:gray;" class="col-lg-4 col-md-4 col-lg-push-1 col-md-push-1" id="profileFeedback">Select .jpg format image.</div>
+                      <label style="margin-top: -1%;" class="btn btn-info col-lg-4 col-md-4 col-lg-push-2 col-md-push-2 col-xs-6 col-xs-push-2" for="profileImage">Choose an Image</label>
+                  </form>
+
+                  <searchbar ng-controller="ContactChipDemoCtrl"></searchbar>
+
+              </div>
+              <div class="modal-footer">
+                  <md-button class="btn btn-default" data-dismiss="modal">Close</md-button>
+                  <md-button ng-click="submitInfo()" data-dismiss="modal" class="btn btn-success">Submit</md-button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+
+  <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function() {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					head.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					head.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function(msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			console.log('Live reload enabled.');
+		})();
+	}
+	// ]]>
+</script>
+</body>
+
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.js"></script>
+  <script src="../node_modules/angular-aria/angular-aria.js"></script>
+  <script src="../node_modules/angular/spin.js"></script>
+  <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
+  <script src="./src/users/Users.js"></script>
+  <script src="./src/users/UserController.js"></script>
+  <script src="./src/users/UserService.js"></script>
+  <script src="./src/userProvider.js"></script>
+  <script src="./src/leftSidebarDirective.js"></script>
+  <script src="./src/navBarDirective.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="src/login/submitController.js"></script>
+  <script src="src/groups/controller/groupController.js"></script>
+
+  <!--<<<<<<< HEAD-->
+  <script src="src/courses/controller/coursesController.js"></script>
+  <!--=======-->
+  <script src="src/search bar/controller/searchBarController.js"></script>
+  <script src="src/search bar/directive/searchBarDirective.js"></script>
+  <!-- nelsonBranch-->
+
+
+  <script type="text/javascript">
+
+          angular
+              .module('myApp', ['ngMaterial', 'users'])
+              .config(function($mdThemingProvider, $mdIconProvider){
+
+                  $mdIconProvider
+                      .defaultIconSet("./assets/svg/avatars.svg", 128)
+                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+                      .icon("share"      , "./assets/svg/share.svg"       , 24)
+                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('blue')
+                          .accentPalette('red');
+
+              });
+
+  </script>
+
+
+</html>

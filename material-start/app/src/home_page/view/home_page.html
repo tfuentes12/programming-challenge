@@ -1,0 +1,74 @@
+<div ng-controller="UserController" layout="column" ng-cloak class="md-inline-form">
+
+  <section layout="row" flex>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-xs')" md-whiteframe="4">
+      <!-- <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar> -->
+      <md-content layout-padding ng-controller="LeftCtrl">
+        <!-- <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Left
+        </md-button> -->
+        <p>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav>
+
+    <md-content flex layout-padding>
+      <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">What is your message?</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content layout="row" layout-align="space-between">
+          <div>
+            <form name="userForm">
+
+              <md-input-container class="md-block">
+                <label>Name</label>
+                <input ng-model="user.name">
+              </md-input-container>
+
+              <div layout="row">
+                <md-input-container class="md-block">
+                  <label>Email</label>
+                  <input ng-model="user.email">
+                </md-input-container>
+
+                <md-input-container class="md-block">
+                  <label>SMS</label>
+                  <input ng-model="user.sms">
+                </md-input-container>
+              </div>
+
+              <md-input-container class="md-block">
+                <label>Message</label>
+                <textarea ng-model="user.message" md-maxlength="140" rows="9" md-select-on-focus></textarea>
+              </md-input-container>
+
+            </form>
+          </div>
+          <!-- <div class="md-media-xl card-media"></div>
+
+          <md-card-actions layout="column">
+            <md-button class="md-icon-button" aria-label="Favorite">
+              <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings">
+              <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Share">
+              <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+            </md-button>
+          </md-card-actions> -->
+
+        </md-card-content>
+      </md-card>
+    </md-content>
+
+  </section>
+</div>
