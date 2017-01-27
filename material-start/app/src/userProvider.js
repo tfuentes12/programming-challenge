@@ -9,7 +9,7 @@ var app = angular.module("users")
     });
     $routeProvider.otherwise(
     {
-      redirectTo:     'src/home_page/view/home_page.html',
+      redirectTo:     '/home',
       controller:     'HomeCtrl',
     });
 
