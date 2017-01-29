@@ -1,4 +1,4 @@
-<div ng-controller="UserController" layout="column" ng-cloak class="md-inline-form">
+<div ng-controller="UserController as ctrl" layout="column" ng-cloak class="md-inline-form">
 
   <section layout="row" flex>
 
@@ -6,7 +6,7 @@
       <!-- <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Sidenav Left</h1>
       </md-toolbar> -->
-      <md-content layout-padding ng-controller="LeftCtrl">
+      <md-content layout-padding>
         <!-- <md-button ng-click="close()" class="md-primary">
           Close Sidenav Left
         </md-button> -->
@@ -15,9 +15,6 @@
         </div>
         <p>
           To-Do:<br>
-1. Validation requirements:<br>
-• email and/or sms must be provided<br>
-• sms (if provided) must be 10 or 11 digits long<br>
 2. Add autocomplete to any of the recipient’s input fields. Use API
 request: /programming_challenge/autocomplete<br>
 3. Send the message to the recipient using API request: /programming_challenge/message<br>
@@ -26,7 +23,7 @@ request: /programming_challenge/autocomplete<br>
       </md-content>
     </md-sidenav>
 
-    <md-content flex layout-padding>
+    <md-content flex layout-padding style="background-color: #EEEEEE;">
       <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
         <md-card-title>
           <md-card-title-text>
@@ -34,32 +31,60 @@ request: /programming_challenge/autocomplete<br>
           </md-card-title-text>
         </md-card-title>
         <md-card-content layout="row" layout-align="space-between">
-          <div>
+          <div style="width: 100%;">
             <form name="userForm" novalidate>
 
+              <md-autocomplete flex required
+                  md-input-name="autocompleteField"
+                  md-input-minlength="1"
+                  md-input-maxlength="18"
+                  md-no-cache="ctrl.noCache"
+                  md-selected-item="ctrl.selectedItem"
+                  md-search-text="ctrl.searchText"
+                  md-items="item in ctrl.querySearch(ctrl.searchText)"
+                  md-item-text="item.name"
+                  md-floating-label="Name"
+                  md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                  <span class="item-title">
+                    <span><md-icon class="fa fa-user fa-lg" style="color: orange;"></md-icon> {{item.name}}</span>
+                  </span>
+                  <span class="item-metadata">
+                    <span class="item-metastat">
+                      <span style="margin-right: 2%;"><md-icon class="fa fa-envelope" style="margin-top: 1%; color: blue;"></md-icon>{{item.email}}</span>
+                    </span>
+                    <span class="item-metastat">
+                      <span><md-icon class="fa fa-phone" style="margin-top: 1%; color: black;"></md-icon>{{item.phone}}</span>
+                    </span>
+                  </span>
+                </md-item-template>
+                <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Name is required.</p>
+              </md-autocomplete>
+
               <div layout="row">
-                <md-input-container class="md-block">
+                <md-input-container class="md-block" style="width: 100%;">
                   <label>Name</label>
-                  <input type="text" name="name" ng-model="user.name" required>
+                  <input type="text" name="name" ng-model="name" required>
                   <p ng-show="userForm.name.$invalid && !userForm.name.$pristine" class="help-block">Name is required.</p>
                 </md-input-container>
 
-                <md-input-container class="md-block" flex-offset="5">
+                <md-input-container class="md-block" flex-offset="5" style="width: 100%;">
                   <label>Email</label>
-                  <input type="email" name="email" ng-model="user.email" ng-pattern="/^.+@.+\..+$/">
+                  <input type="email" name="email" ng-model="email" ng-pattern="/^.+@.+\..+$/">
                   <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+                  <div style="color: grey;" class="hint" ng-show="(!email.length && sms.length) || (email.length && !sms.length)">Enter an email and/or phone number.</div>
                 </md-input-container>
 
-                <md-input-container class="md-block" flex-offset="5">
-                  <label>SMS</label>
-                  <input name="sms" ng-pattern="/^[0-9]{10||11}$/" ng-model="user.sms">
+                <md-input-container class="md-block" flex-offset="5" style="width: 100%;">
+                  <label>Phone Number</label>
+                  <input name="sms" ng-pattern="/^[0-9]{10,11}$/" ng-model="sms">
                   <p ng-show="userForm.sms.$invalid && !userForm.sms.$pristine" class="help-block">Enter a valid number.</p>
                 </md-input-container>
               </div>
 
-              <md-input-container class="md-block">
+              <md-input-container class="md-block" style="margin-top: -0.5%;">
                 <label>Message</label>
-                <textarea ng-model="user.message" md-maxlength="140" rows="9" md-select-on-focus required></textarea>
+                <textarea ng-model="message" md-maxlength="140" rows="8" md-select-on-focus required></textarea>
               </md-input-container>
 
               <md-input-container class="md-block">

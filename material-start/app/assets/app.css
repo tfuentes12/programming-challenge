@@ -469,6 +469,24 @@ $duration: 1.4s;
  }
 }
 
+.autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+
+.autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+
+.autocomplete-custom-template .item-title,
+.autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; }
+
+.autocomplete-custom-template .item-title md-icon {
+  height: 18px;
+  width: 18px; }
 
 /* ICONS */
 
@@ -568,4 +586,3 @@ $duration: 1.4s;
 .social-icons .fa-windows{background-color:#12B6F3;}
 .social-icons .fa-xing,.social-icons .fa-xing-square{background-color:#00555C;}
 .social-icons .fa-youtube,.social-icons .fa-youtube-play,.social-icons .fa-youtube-square{background-color:#C52F30;}
-
