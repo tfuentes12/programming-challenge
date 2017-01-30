@@ -1,8 +1,8 @@
-angular.module('users')
+angular.module('apps')
 .factory('userService', ['$http', function($http) {
 
   /*------------------------ Get data for autocomplete -----------------------*/
-  
+
   var host = "http://yifteeqa.com";
 
   return {

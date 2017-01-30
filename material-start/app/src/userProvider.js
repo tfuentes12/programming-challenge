@@ -1,10 +1,10 @@
-var app = angular.module("users")
+var app = angular.module("apps")
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
 
     $routeProvider.when('/home',
     {
-      templateUrl:    'src/home_page/view/home_page.html',
+      templateUrl:    'src/view/home_page.html',
       controller:     'HomeCtrl'
     });
     $routeProvider.otherwise(

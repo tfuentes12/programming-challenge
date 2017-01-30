@@ -29,7 +29,7 @@
     </style>
   </head>
 
-  <body ng-app="myApp" layout="column" ng-controller="UserController as user" ng-cloak>
+  <body ng-app="myApp" layout="column" ng-controller="AppController as ctrl" ng-cloak>
   <navbar></navbar>
     <div flex layout="row">
 
@@ -47,9 +47,8 @@
   <script src="../node_modules/angular-aria/angular-aria.js"></script>
   <script src="../node_modules/angular/spin.js"></script>
   <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
-  <script src="./src/users/Users.js"></script>
-  <script src="./src/users/UserController.js"></script>
-  <script src="./src/users/UserService.js"></script>
+  <script src="./src/controller/app.js"></script>
+  <script src="./src/controller/AppController.js"></script>
   <script src="./src/userProvider.js"></script>
   <script src="./src/navBarDirective.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
@@ -63,7 +62,7 @@
   <script type="text/javascript">
 
           angular
-              .module('myApp', ['ngMaterial', 'users'])
+              .module('myApp', ['ngMaterial', 'apps'])
               .config(function($mdThemingProvider, $mdIconProvider){
 
                   $mdIconProvider

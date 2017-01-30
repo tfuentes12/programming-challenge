@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('users')
+angular.module('apps')
 	.directive('navbar',function(){
 		return {
         templateUrl:'src/navBar.html',

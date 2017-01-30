@@ -2,7 +2,7 @@ var app = angular.module('apps')
   .controller('AppController', ['userService', 'messageService', '$mdSidenav', '$timeout', '$scope', '$q', '$route', function(userService, messageService, $mdSidenav, $timeout, $scope, $q, $route) {
 
     var self = this;
-    self.message = "";
+    self.message = null;
     self.validPhone = false;
     self.validEmail = false;
 
@@ -180,24 +180,27 @@ var app = angular.module('apps')
             'The recepient will get your message shortly.',
             'success'
           )
-          $route.reload();
           self.selectedItem  = null;
           self.searchText    = null;
           self.searchEmailText = null;
           self.searchNameText = null;
           self.searchPhoneText = null;
+          self.message = null;
+          $route.reload();
+
         } else {
           swal(
             'Sorry!',
             'There was a problem sending your message, please try again later.',
             'error'
           )
-          $route.reload();
           self.selectedItem  = null;
           self.searchText    = null;
           self.searchEmailText = null;
           self.searchNameText = null;
           self.searchPhoneText = null;
+          self.message = null;
+          $route.reload();
         }
       });
     }

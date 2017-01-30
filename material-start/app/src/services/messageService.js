@@ -1,4 +1,4 @@
-angular.module('users')
+angular.module('apps')
 .factory('messageService', ['$http', function($http) {
 
   /*--------------------------  Send message  --------------------------------*/
