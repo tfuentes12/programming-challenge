@@ -5,6 +5,7 @@ var app = angular.module('apps')
     self.message = null;
     self.validPhone = false;
     self.validEmail = false;
+    self.disabled = true;
 
     /*------------------------  Autocomplete  ------------------------------- */
 
@@ -29,16 +30,7 @@ var app = angular.module('apps')
     $scope.validate = function () {
       if (self.searchPhoneText != null) {
         var phoneRegex = /^[0-9]{10,11}$/;
-        if(phoneRegex.test(self.searchPhoneText)){
-          self.validPhone = true;
-        }else{
-          self.validPhone = false;
-        }
-      }
-
-      if (self.searchPhoneText != null) {
-        var phoneRegex = /^[0-9]{10,11}$/;
-        if(phoneRegex.test(self.searchPhoneText)){
+        if(phoneRegex.test(self.searchPhoneText) && (self.searchPhoneText.length < 12) && (self.searchPhoneText.length > 0)){
           self.validPhone = true;
         }else{
           self.validPhone = false;
@@ -50,6 +42,9 @@ var app = angular.module('apps')
     //query for Name input
     function queryNameSearch (query) {
       console.log(query);
+
+      $scope.validate();
+
       userService.getData(query).then(function(response){
           self.users = response;
       });
@@ -67,6 +62,8 @@ var app = angular.module('apps')
 
     //query for Email input
     function queryEmailSearch (query) {
+      $scope.validate();
+
       self.emails = loadAllEmails();
       userService.getData(query).then(function(response){
           self.users = response;
@@ -83,6 +80,8 @@ var app = angular.module('apps')
 
     //query for Phone input
     function queryPhoneSearch (query) {
+      $scope.validate();
+
       self.phones = loadAllPhones();
       userService.getData(query).then(function(response){
           self.users = response;

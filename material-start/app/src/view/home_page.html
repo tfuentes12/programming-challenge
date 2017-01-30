@@ -167,7 +167,7 @@
 
               <!-- Submit form (Send) button -->
               <div>
-                <md-button ng-click="submit(ctrl.message, userForm)" class="md-raised md-primary" ng-disabled="userForm.$invalid && !email.length && !phone.length">Send</md-button>
+                <md-button ng-click="submit(ctrl.message, userForm)" class="md-raised md-primary" ng-disabled="userForm.$invalid && !ctrl.validPhone && !ctrl.validEmail">Send</md-button>
               </div>
 
             </form>
