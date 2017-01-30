@@ -1,21 +1,17 @@
 angular.module('users')
-.factory('userService', [
-'$http',
-function($http) {
+.factory('userService', ['$http', function($http) {
 
+  /*------------------------ Get data for autocomplete -----------------------*/
+  
   var host = "http://yifteeqa.com";
 
-	var userService = {};
+  return {
+        getData: function(param) {
+            return $http.get(host + "/programming_challenge/autocomplete?q=" + param).then(function(response) {
+                return response.data.response.contacts;
+            });
+        }
 
-  userService.getData = function (param) {
-		return $http.get(host + "/programming_challenge/autocomplete?q=" + param)
-		.then(function (response) {
-			return response.data.response.contacts;
-		})
-		.then(null, function (err) {
-			console.error(err);
-		});
-	};
+    };
 
-	return userService;
 }]);

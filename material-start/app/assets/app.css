@@ -482,6 +482,7 @@ $duration: 1.4s;
 .autocomplete-custom-template .item-title,
 .autocomplete-custom-template .item-metadata {
   display: block;
+  font-size: 90%;
   line-height: 2; }
 
 .autocomplete-custom-template .item-title md-icon {

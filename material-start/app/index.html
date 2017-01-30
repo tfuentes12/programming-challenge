@@ -7,22 +7,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-    <!--<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>-->
     <link rel="stylesheet" href="assets/font.css">
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.css">
     <link rel="stylesheet" href="assets/app.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-    <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/material.css">
 
     <script src="bower_components/cropper/cropper.js"></script>
     <script src="assets/jquery.min.js"></script>
     <script src="assets/bootstrap.min.js"></script>
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>-->
-    <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
-
 
     <style type="text/css">
         /**
@@ -37,7 +32,6 @@
   <body ng-app="myApp" layout="column" ng-controller="UserController as user" ng-cloak>
   <navbar></navbar>
     <div flex layout="row">
-      <!-- <left-sidebar></left-sidebar> -->
 
       <md-content style="position:relative;" flex="100" id="main-content">
         <div ng-view> </div>
@@ -60,6 +54,11 @@
   <script src="./src/navBarDirective.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="./src/services/userService.js"></script>
+  <script src="./src/services/messageService.js"></script>
+  <link rel='stylesheet' href='bower_components/bootstrap-sweetalert/dist/sweetalert.css'>
+  <link rel="stylesheet" href="bower_components/sweetalert2/dist/sweetalert2.css">
+  <script rel='stylesheet' src='bower_components/bootstrap-sweetalert/dist/sweetalert.js'></script>
+
 
   <script type="text/javascript">
 

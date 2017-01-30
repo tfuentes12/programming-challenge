@@ -1,8 +1,14 @@
-<md-toolbar layout="row" class="md-toolbar-tools" ng-controller="UserController">
-    <md-button class="menu md-icon-button" ng-click="toggleUsersList" hide-gt-xs aria-label="Menu">
+<md-toolbar layout="row" class="md-toolbar-tools">
+
+    <!-- menu button only available in small devices -->
+    <md-button class="menu md-icon-button" type="button" ng-click="toggleLeft()" hide-gt-xs aria-label="Menu">
         <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-    <h1 hide-gt-lg>Welcome to the Yiftee Messaging System!</h1>
+
+    <!-- Standard message for large devices -->
+    <h1 hide-xs>Welcome to the Yiftee Messaging System!</h1>
+
+    <!-- Message for small devices -->
     <h1 hide-gt-xs>YMS</h1>
-    <!-- <h2 class="col-xs-4 col-xs-push-4 text-right">Welcome!</h2> -->
+
 </md-toolbar>
